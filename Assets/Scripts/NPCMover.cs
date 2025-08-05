@@ -21,7 +21,7 @@ public class NPCMover : MonoBehaviour
         if (gridManager != null)
         {
             currentNPCPosition = gridManager.GetNPCPosition();
-            UpdateNPCVisualPosition();
+            UpdateNPCPosition();
         }
     }
 
@@ -71,22 +71,20 @@ public class NPCMover : MonoBehaviour
     {
         if (gridManager != null)
         {
-            gridManager.ResetPathVisualization();
+            gridManager.ResetPath();
             currentNPCPosition = gridManager.GetNPCPosition();
-            UpdateNPCVisualPosition();
+            UpdateNPCPosition();
 
             gridManager.UpdateNPCPosition(currentNPCPosition);
         }
     }
 
-    private void UpdateNPCVisualPosition()
+    private void UpdateNPCPosition()
     {
         if (gridManager != null)
         {
             float cellSize = gridManager.GetCellSize();
-            transform.position = new Vector3(currentNPCPosition.x * cellSize,
-                                           currentNPCPosition.y * cellSize,
-                                           -1f);
+            transform.position = new Vector3(currentNPCPosition.x * cellSize, currentNPCPosition.y * cellSize, -1f);
         }
     }
 
@@ -170,8 +168,4 @@ public class NPCMover : MonoBehaviour
         GUILayout.EndArea();
     }
 
-    public Vector2Int GetCurrentPosition()
-    {
-        return currentNPCPosition;
-    }
 }

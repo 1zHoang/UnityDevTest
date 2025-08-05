@@ -20,7 +20,6 @@ public class GridManager : MonoBehaviour
     public Color npcColor = Color.blue;
     public Color goalColor = Color.red;
     public Color pathColor = Color.yellow;
-    public Color visitedColor = Color.cyan;
 
     private int[,] grid;
     private GameObject[,] cellObjects;
@@ -37,7 +36,7 @@ public class GridManager : MonoBehaviour
     {
         agent = FindAnyObjectByType<PathfindingAgent>();
         GenerateGrid();
-        CreateVisualGrid();
+        CreateGrid();
 
         if (agent != null)
         {
@@ -132,12 +131,12 @@ public class GridManager : MonoBehaviour
         grid[0, 0] = NPC;
     }
 
-    void CreateVisualGrid()
+    void CreateGrid()
     {
         cellObjects = new GameObject[gridWidth, gridHeight];
 
         SetupMobileCamera();
-        CalculateOptimalCellSize();
+        CalculateCellSize();
 
         float gridPixelWidth = gridWidth * cellSize;
         float gridPixelHeight = gridHeight * cellSize;
@@ -158,11 +157,11 @@ public class GridManager : MonoBehaviour
                 cell.name = $"Cell_{x}_{y}";
 
                 cellObjects[x, y] = cell;
-                UpdateCellVisual(x, y);
+                UpdateCellColor(x, y);
             }
         }
     }
-    void CalculateOptimalCellSize()
+    void CalculateCellSize()
     {
         float screenWidth = Camera.main.orthographicSize * 2 * Camera.main.aspect;
         float screenHeight = Camera.main.orthographicSize * 2;
@@ -188,7 +187,7 @@ public class GridManager : MonoBehaviour
         Camera.main.orthographic = true;
     }
 
-    public void UpdateCellVisual(int x, int y)
+    public void UpdateCellColor(int x, int y)
     {
         if (cellObjects[x, y] == null) return;
 
@@ -222,18 +221,6 @@ public class GridManager : MonoBehaviour
             }
         }
     }
-
-    public void HighlightVisited(HashSet<Vector2Int> visited)
-    {
-        foreach (Vector2Int pos in visited)
-        {
-            if (grid[pos.x, pos.y] == EMPTY)
-            {
-                cellObjects[pos.x, pos.y].GetComponent<SpriteRenderer>().color = visitedColor;
-            }
-        }
-    }
-
     public bool IsValidPosition(int x, int y)
     {
         return x >= 0 && x < gridWidth && y >= 0 && y < gridHeight && grid[x, y] != WALL;
@@ -279,21 +266,21 @@ public class GridManager : MonoBehaviour
 
         if (GUILayout.Button("Reset Path", bigButton))
         {
-            ResetPathVisualization();
+            ResetPath();
         }
 
         if(GUILayout.Button("Genrate Hardcoded Map", bigButton))
         {
             ClearOldCells();
             GenerateHardcodedMap();
-            CreateVisualGrid();
+            CreateGrid();
         }
 
         if (GUILayout.Button("Generate New Map", bigButton))
         {
             ClearOldCells();
             GenerateGrid();
-            CreateVisualGrid();
+            CreateGrid();
         }
 
         if (GUILayout.Button("Generate map 10x10", bigButton))
@@ -302,7 +289,7 @@ public class GridManager : MonoBehaviour
             gridHeight = 10;
             ClearOldCells();
             GenerateGrid();
-            CreateVisualGrid();
+            CreateGrid();
         }
 
         if (GUILayout.Button("Generate map 20x20", bigButton))
@@ -311,7 +298,7 @@ public class GridManager : MonoBehaviour
             gridHeight = 20;
             ClearOldCells();
             GenerateGrid();
-            CreateVisualGrid();
+            CreateGrid();
         }
 
         GUILayout.EndVertical();
@@ -345,13 +332,13 @@ public class GridManager : MonoBehaviour
         }
     }
 
-    public void ResetPathVisualization()
+    public void ResetPath()
     {
         for (int x = 0; x < gridWidth; x++)
         {
             for (int y = 0; y < gridHeight; y++)
             {
-                UpdateCellVisual(x, y);
+                UpdateCellColor(x, y);
             }
         }
     }
