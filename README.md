@@ -3,6 +3,7 @@ Các chức năng hoàn thiện : + Tìm đường cho NPC
                            + Di chuyển NPC đến đích, tạo map ngẫu nhiên (kích thước 10x10 hoặc 20x20 tùy)
                            + Hiển thị thông báo khi NPC đi đến đích hoặc khi không tìm thấy đường đi
                            + Hiển thị UI phần biệt NPC, đích, tường, ô trống và đường đi khi tìm đường
+                           + Có xử lý đa màn hình, UI không bị phần tai thỏ hay camera của điện thoại che
 Cách chơi cụ thể: Chơi dựa trên các button hiển thị trên màn hình (GUI)
 -Bao gồm 2 hộp điều khiển:
 -Hộp 1: + Chọn "Find Path" để hiển thị đường đi tối ưu từ vị trí NPC đến đích (đường đi sẽ có màu vàng)
