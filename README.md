@@ -1,4 +1,5 @@
 Hoàn thiện game theo đề bài + kết hợp giải quyết cùng AI
+Vấn đề: Game tối ưu hiệu suất chưa đưcọ tốt, gen map nhiều có thể làm lag editor
 Các chức năng hoàn thiện : + Tìm đường cho NPC
                            + Di chuyển NPC đến đích, tạo map ngẫu nhiên (kích thước 10x10 hoặc 20x20 tùy)
                            + Hiển thị thông báo khi NPC đi đến đích hoặc khi không tìm thấy đường đi
