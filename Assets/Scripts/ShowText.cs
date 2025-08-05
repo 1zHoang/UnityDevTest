@@ -11,7 +11,6 @@ public class ShowText : MonoBehaviour
     public bool isShowTu = true;
     public GameObject tuTextBg;
     public Text tuText;
-    private DG.Tweening.Sequence sequence;
     void Awake()
     {
         if (Instance != null && Instance != this)

@@ -93,7 +93,7 @@ public class GridManager : MonoBehaviour
             goalPosition.x = Random.Range(0, gridWidth);
             goalPosition.y = Random.Range(0, gridHeight);
         } while (grid[goalPosition.x, goalPosition.y] != EMPTY ||
-                 Vector2Int.Distance(npcPosition, goalPosition) < 3);
+                 Vector2Int.Distance(npcPosition, goalPosition) < 8);
 
         grid[goalPosition.x, goalPosition.y] = GOAL;
     }
@@ -166,11 +166,11 @@ public class GridManager : MonoBehaviour
         float screenWidth = Camera.main.orthographicSize * 2 * Camera.main.aspect;
         float screenHeight = Camera.main.orthographicSize * 2;
 
-        float availableHeight = screenHeight * 0.7f;
-        float availableWidth = screenWidth * 0.9f;
+        float height = screenHeight * 0.7f;
+        float width = screenWidth * 0.9f;
 
-        float cellSizeByWidth = availableWidth / gridWidth;
-        float cellSizeByHeight = availableHeight / gridHeight;
+        float cellSizeByWidth = width / gridWidth;
+        float cellSizeByHeight = height / gridHeight;
 
         cellSize = Mathf.Min(cellSizeByWidth, cellSizeByHeight);
         cellSize = Mathf.Max(cellSize, 0.4f);
