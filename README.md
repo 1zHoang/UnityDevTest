@@ -1,3 +1,4 @@
+Game sử dụng Unity phiên bản 2023.2.16f1
 Hoàn thiện game theo đề bài + kết hợp giải quyết cùng AI
 Vấn đề: Game tối ưu hiệu suất chưa đưcọ tốt, gen map nhiều có thể làm lag editor
 Các chức năng hoàn thiện : + Tìm đường cho NPC
